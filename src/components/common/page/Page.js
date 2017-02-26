@@ -1,30 +1,27 @@
 import React from 'react'
 
-import PageMenu from '../menu/pagemenu/PageMenu'
 import TopBar from '../menu/topbar/TopBar'
 import Firebase from '../firebase/Firebase'
+import Grid from 'react-bootstrap/lib/Grid'
+import Row from 'react-bootstrap/lib/Row'
+import Col from 'react-bootstrap/lib/Col'
 
 export default class Page extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this._handlePageMenu = this._handlePageMenu.bind(this)
-
-        this.state = {openPageMenu: false}
-    }
-
-    _handlePageMenu() {
-        this.setState({openPageMenu: !this.state.openPageMenu})
-    }
-
     render() {
         return (
-            <div>
-                <PageMenu handlePageMenu={this._handlePageMenu} openPageMenu={this.state.openPageMenu}/>
-                <TopBar handlePageMenu={this._handlePageMenu}/>
-                <div>{this.props.children}</div>
+            <Grid fluid className="no-padding">
+                <Row className="no-margin">
+                    <Col xs={12} className="no-padding">
+                        <TopBar/>
+                    </Col>
+                </Row>
+                <Row className="no-margin">
+                    <Col xs={12} className="no-padding">
+                        {this.props.children}
+                    </Col>
+                </Row>
                 <Firebase/>
-            </div>
+            </Grid>
         )
     }
 }
